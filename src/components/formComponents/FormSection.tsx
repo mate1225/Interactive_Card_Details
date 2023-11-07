@@ -1,23 +1,23 @@
 import BottomSection from "./BottomSection";
-import ConfirmButton from "./ConfirmButton";
+import CustomButton from "./CustomButton";
 import Inputs from "./Inputs";
 
 export default function FormSection() {
   return (
-    <div className=" mt-[3.02rem]  xl:ml-[7.94rem] xl:mr-[14.19rem] xl:mt-[17.19rem]  ">
+    <div className=" mt-[3.02rem]  xl:mt-[17.19rem] xl:max-w-[23.8125rem]  ">
       <section>
         <Inputs
-          placeholderValue="e.g. Jane Appleseed"
           labelValue="Cardholder Name"
+          placeholderValue="e.g. Jane Appleseed"
           style="mx-6"
         />
         <Inputs
-          placeholderValue="e.g. Jane Appleseed"
-          labelValue="Cardholder Name"
+          labelValue="Card Number"
+          placeholderValue="e.g. 1234 5678 9123 0000"
           style="mx-6"
         />
         <BottomSection />
-        <ConfirmButton />
+        <CustomButton text="Confirm" style="mt-7" />
       </section>
     </div>
   );

@@ -1,6 +1,5 @@
 //images
 
-/* import complete from "../../images/icon-complete.svg"; */
 import CardBack from "./CardBack";
 import CardFront from "./CardFront";
 
