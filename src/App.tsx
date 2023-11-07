@@ -2,7 +2,7 @@ import "./App.css";
 //tsx
 import BackgroundImage from "./components/BackgroundImage";
 import Card from "./components/card/Card";
-import FinishPage from "./components/formComponents/FinishPage";
+/* import FinishPage from "./components/formComponents/FinishPage"; */
 import FormSection from "./components/formComponents/FormSection";
 
 function App() {
