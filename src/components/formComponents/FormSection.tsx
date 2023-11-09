@@ -10,8 +10,23 @@ export default function FormSection(props: {
   YY: string;
   CVC: string;
   handleChange: ChangeEventHandler;
+  CardNumberError: boolean;
+  MMError: boolean;
+  YYError: boolean;
+  CVCError: boolean;
 }) {
-  const { Cardholder, CardNumber, MM, YY, CVC, handleChange } = props;
+  const {
+    Cardholder,
+    CardNumber,
+    MM,
+    YY,
+    CVC,
+    handleChange,
+    CardNumberError,
+    MMError,
+    YYError,
+    CVCError,
+  } = props;
   return (
     <div className=" mt-[3.02rem]  xl:mt-[17.19rem] xl:max-w-[23.8125rem]  ">
       <section>
@@ -19,7 +34,7 @@ export default function FormSection(props: {
           labelValue="Cardholder Name"
           placeholderValue="e.g. Jane Appleseed"
           divStyle="mx-6"
-          InputStyle=""
+          InputStyle={false}
           inpValue={Cardholder}
           inpName="Cardholder"
           handleChange={handleChange}
@@ -28,7 +43,7 @@ export default function FormSection(props: {
           labelValue="Card Number"
           placeholderValue="e.g. 1234 5678 9123 0000"
           divStyle="mx-6"
-          InputStyle=""
+          InputStyle={CardNumberError}
           inpValue={CardNumber}
           inpName="CardNumber"
           handleChange={handleChange}
@@ -38,6 +53,9 @@ export default function FormSection(props: {
           YYValue={YY}
           CVCValue={CVC}
           handleChange={handleChange}
+          MMError={MMError}
+          YYError={YYError}
+          CVCError={CVCError}
         />
         <CustomButton text="Confirm" style="mt-7" />
       </section>

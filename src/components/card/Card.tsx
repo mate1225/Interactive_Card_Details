@@ -4,21 +4,21 @@ import CardBack from "./CardBack";
 import CardFront from "./CardFront";
 
 export default function (props: {
-  cv: string;
+  CVC: string;
   Cardholder: string;
-  cardNumber: string;
+  CardNumber: string;
   MM: string;
   YY: string;
 }) {
-  const { cv, Cardholder, cardNumber, MM, YY } = props;
+  const { CVC, Cardholder, CardNumber, MM, YY } = props;
   return (
     <>
       <section className=" flex items-center justify-center xl:items-end xl:justify-start  ">
         <div className=" flex flex-col xl:flex-col-reverse">
-          <CardBack cv={cv} />
+          <CardBack cv={CVC} />
           <CardFront
             Cardholder={Cardholder}
-            cardNumber={cardNumber}
+            cardNumber={CardNumber}
             MM={MM}
             YY={YY}
           />

@@ -21,13 +21,9 @@ export default function CardFront(props: {
           </p>
           <div className=" mt-[1.06rem] flex items-center justify-between text-[0.5625rem] tracking-[0.08038rem] xl:mt-[1.59rem] xl:text-[0.875rem] xl:tracking-[0.125rem] ">
             <p> {Cardholder === "" ? "JANE APPLESEED" : Cardholder}</p>
-            <div>
-              <p> </p>
-
-              <p>
-                {MM === "" ? "00" : MM} / {YY === "" ? "00" : YY}
-              </p>
-            </div>
+            <p>
+              {MM === "" ? "00" : MM} / {YY === "" ? "00" : YY}
+            </p>
           </div>
         </div>
       </div>
