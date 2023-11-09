@@ -1,11 +1,12 @@
 import cardFront from "../../images/bg-card-front.png";
 import cardLogo from "../../images/card-logo.svg";
 export default function CardFront(props: {
-  name: string;
+  Cardholder: string;
   cardNumber: string;
-  date: string;
+  MM: string;
+  YY: string;
 }) {
-  const { name, cardNumber, date } = props;
+  const { Cardholder, cardNumber, MM, YY } = props;
   return (
     <section>
       <div className=" relative ml-[1.06rem] mr-[4.56rem] mt-[-4.23rem] xl:ml-[10.25rem] xl:mt-[11.69rem] xl:w-[27.9375rem] ">
@@ -19,8 +20,14 @@ export default function CardFront(props: {
             {cardNumber === "" ? "0000 0000 0000 0000" : cardNumber}
           </p>
           <div className=" mt-[1.06rem] flex items-center justify-between text-[0.5625rem] tracking-[0.08038rem] xl:mt-[1.59rem] xl:text-[0.875rem] xl:tracking-[0.125rem] ">
-            <p> {name === "" ? "JANE APPLESEED" : name}</p>
-            <p> {date === "" ? "00/00" : date}</p>
+            <p> {Cardholder === "" ? "JANE APPLESEED" : Cardholder}</p>
+            <div>
+              <p> </p>
+
+              <p>
+                {MM === "" ? "00" : MM} / {YY === "" ? "00" : YY}
+              </p>
+            </div>
           </div>
         </div>
       </div>
