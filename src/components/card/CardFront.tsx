@@ -7,6 +7,11 @@ export default function CardFront(props: {
   YY: string;
 }) {
   const { Cardholder, cardNumber, MM, YY } = props;
+  let cardNumberPart1 = cardNumber.slice(0, 4);
+  let cardNumberPart2 = cardNumber.slice(4, 8);
+  let cardNumberPart3 = cardNumber.slice(8, 12);
+  let cardNumberPart4 = cardNumber.slice(12, 16);
+
   return (
     <section>
       <div className=" relative ml-[1.06rem] mr-[4.56rem] mt-[-4.23rem] xl:ml-[10.25rem] xl:mt-[11.69rem] xl:w-[27.9375rem] ">
@@ -17,12 +22,21 @@ export default function CardFront(props: {
             className=" mt-[1.1rem] h-[1.875rem] xl:h-[2.9375rem] "
           />
           <p className=" mt-[2.31rem] text-[1.125rem] tracking-[0.1375rem] xl:mt-[4rem] xl:text-[1.75rem] xl:tracking-[0.21388rem]  ">
-            {cardNumber === "" ? "0000 0000 0000 0000" : cardNumber}
+            {cardNumber === ""
+              ? "0000 0000 0000 0000"
+              : cardNumberPart1 +
+                " " +
+                cardNumberPart2 +
+                " " +
+                cardNumberPart3 +
+                " " +
+                cardNumberPart4}
           </p>
           <div className=" mt-[1.06rem] flex items-center justify-between text-[0.5625rem] tracking-[0.08038rem] xl:mt-[1.59rem] xl:text-[0.875rem] xl:tracking-[0.125rem] ">
             <p> {Cardholder === "" ? "JANE APPLESEED" : Cardholder}</p>
             <p>
-              {MM === "" ? "00" : MM} / {YY === "" ? "00" : YY}
+              {MM === "" ? "00" : MM.slice(0, 2)} /{" "}
+              {YY === "" ? "00" : YY.slice(0, 2)}
             </p>
           </div>
         </div>

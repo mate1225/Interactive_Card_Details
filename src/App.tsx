@@ -3,27 +3,42 @@ import React, { useState } from "react";
 //tsx
 import BackgroundImage from "./components/BackgroundImage";
 import Card from "./components/card/Card";
-/* import FinishPage from "./components/formComponents/FinishPage"; */
+import FinishPage from "./components/formComponents/FinishPage";
 import FormSection from "./components/formComponents/FormSection";
+import { stateInterface, ErrorStateInterface } from "./util/interfaces";
 
 function App() {
-  const [state, setState] = useState({
+  const [state, setState] = useState<stateInterface>({
     Cardholder: "",
     CardNumber: "",
     MM: "",
     YY: "",
     CVC: "",
+    buttonSate: false,
   });
 
-  const [errorState, setErrorState] = useState({
+  const [errorState, setErrorState] = useState<ErrorStateInterface>({
     Cardholder: false,
     CardNumber: false,
     MM: false,
     YY: false,
     CVC: false,
+    isContainFalse: false,
   });
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    for (const error in errorState) {
+      if (error as keyof ErrorStateInterface) {
+        console.log("set true");
+        setErrorState((prev) => {
+          return {
+            ...prev,
+            isContainFalse: true,
+          };
+        });
+      }
+    }
+
     const { name, value } = e.target;
     setState((prev) => {
       return {
@@ -73,11 +88,15 @@ function App() {
     }
     if (state.CVC.length > 3) {
       useErrorState("CVC", true);
-    } else if (state.CVC.length <= 3) {
-      useErrorState("CVC", false);
+    }
+    if (state.MM.length > 2) {
+      useErrorState("MM", true);
+    }
+    if (state.YY.length > 2) {
+      useErrorState("YY", true);
     }
   }
-  console.log(errorState);
+
   return (
     <>
       <div className=" xl:flex  ">
@@ -102,10 +121,12 @@ function App() {
             YYError={errorState.YY}
             CVCError={errorState.CVC}
           />
-          {/* <FinishPage /> */}
+          {errorState.isContainFalse === false && state.buttonSate && (
+            <FinishPage />
+          )}
         </div>
         <button
-          className=" h-[20rem] w-[20rem] rounded-md  bg-red-500"
+          className=" h-[20rem] w-[20rem] rounded-md  bg-red-500 hover:bg-gray-600"
           onClick={formValidation}
         >
           teszt button

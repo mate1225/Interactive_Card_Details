@@ -1,0 +1,1 @@
+- nem működik a gombra előjövő köszönő oldal
