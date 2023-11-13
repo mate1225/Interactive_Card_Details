@@ -8,6 +8,7 @@ export default function Inputs(props: {
   inpValue: string;
   inpName: string;
   handleChange: ChangeEventHandler;
+  displayError: string;
 }) {
   const {
     divStyle,
@@ -16,6 +17,7 @@ export default function Inputs(props: {
     placeholderValue,
     inpValue,
     inpName,
+    displayError,
     handleChange,
   } = props;
   return (
@@ -32,6 +34,7 @@ export default function Inputs(props: {
         name={inpName}
         onChange={handleChange}
       />
+      <p className=" text-[0.75rem] text-Red ">{displayError}</p>
     </div>
   );
 }

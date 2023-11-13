@@ -13,5 +13,4 @@ export interface ErrorStateInterface {
   MM: boolean;
   YY: boolean;
   CVC: boolean;
-  isContainFalse: boolean;
 }

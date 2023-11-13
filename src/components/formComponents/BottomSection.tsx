@@ -36,6 +36,7 @@ export default function BottomSection(props: {
               inpValue={MMvalue}
               inpName="MM"
               handleChange={handleChange}
+              displayError=""
             />
             <Inputs
               placeholderValue="YY"
@@ -45,6 +46,7 @@ export default function BottomSection(props: {
               inpValue={YYValue}
               inpName="YY"
               handleChange={handleChange}
+              displayError=""
             />
           </div>
         </div>
@@ -61,6 +63,7 @@ export default function BottomSection(props: {
             inpValue={CVCValue}
             inpName="CVC"
             handleChange={handleChange}
+            displayError=""
           />
         </div>
       </section>

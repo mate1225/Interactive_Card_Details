@@ -23,27 +23,16 @@ function App() {
     MM: false,
     YY: false,
     CVC: false,
-    isContainFalse: false,
   });
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    for (const error in errorState) {
-      if (error as keyof ErrorStateInterface) {
-        console.log("set true");
-        setErrorState((prev) => {
-          return {
-            ...prev,
-            isContainFalse: true,
-          };
-        });
-      }
-    }
-
     const { name, value } = e.target;
+    console.log(state.buttonSate);
     setState((prev) => {
       return {
         ...prev,
         [name]: value,
+        buttonSate: false,
       };
     });
 
@@ -83,20 +72,56 @@ function App() {
     //itt lesz egy ellenőrzés arra hogy tartalmaz-e betűket
   } */
   function formValidation() {
-    if (state.CardNumber.length > 16) {
+    if (state.Cardholder === "") {
+      useErrorState("Cardholder", true);
+    }
+    if (state.CardNumber === "") {
+      useErrorState("CardNumber", true);
+    } else if (state.CardNumber.length !== 16) {
       useErrorState("CardNumber", true);
     }
-    if (state.CVC.length > 3) {
-      useErrorState("CVC", true);
-    }
-    if (state.MM.length > 2) {
+    //
+    if (state.MM === "") {
+      useErrorState("MM", true);
+    } else if (state.MM.length !== 2) {
       useErrorState("MM", true);
     }
-    if (state.YY.length > 2) {
+    //
+    if (state.YY === "") {
+      useErrorState("YY", true);
+    } else if (state.YY.length !== 2) {
       useErrorState("YY", true);
     }
+    //
+    if (state.CVC === "") {
+      useErrorState("CVC", true);
+    } else if (state.CVC.length !== 3) {
+      useErrorState("CVC", true);
+    }
+    /* if (
+      state.Cardholder === "" ||
+      state.CardNumber === "" ||
+      state.MM ||
+      state.YY === "" ||
+      state.CVC === ""
+    ) {
+      setErrorState({
+        Cardholder: true,
+        CardNumber: true,
+        MM: true,
+        YY: true,
+        CVC: true,
+      });
+    } */
+    //
+    setState((prev) => {
+      return {
+        ...prev,
+        buttonSate: true,
+      };
+    });
   }
-
+  console.log(errorState);
   return (
     <>
       <div className=" xl:flex  ">
@@ -109,20 +134,27 @@ function App() {
           YY={state.YY}
         />
         <div className=" w-[100%] xl:flex   xl:justify-center ">
-          <FormSection
-            Cardholder={state.Cardholder}
-            CardNumber={state.CardNumber}
-            MM={state.MM}
-            YY={state.YY}
-            CVC={state.CVC}
-            handleChange={handleInputChange}
-            CardNumberError={errorState.CardNumber}
-            MMError={errorState.MM}
-            YYError={errorState.YY}
-            CVCError={errorState.CVC}
-          />
-          {errorState.isContainFalse === false && state.buttonSate && (
+          {errorState.CVC === false &&
+          errorState.CardNumber === false &&
+          errorState.Cardholder === false &&
+          errorState.MM === false &&
+          errorState.YY === false &&
+          state.buttonSate === true ? (
             <FinishPage />
+          ) : (
+            <FormSection
+              Cardholder={state.Cardholder}
+              CardNumber={state.CardNumber}
+              MM={state.MM}
+              YY={state.YY}
+              CVC={state.CVC}
+              handleChange={handleInputChange}
+              CardNumberError={errorState.CardNumber}
+              MMError={errorState.MM}
+              YYError={errorState.YY}
+              CVCError={errorState.CVC}
+              CardHolderError={errorState.Cardholder}
+            />
           )}
         </div>
         <button

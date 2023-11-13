@@ -10,6 +10,7 @@ export default function FormSection(props: {
   YY: string;
   CVC: string;
   handleChange: ChangeEventHandler;
+  CardHolderError: boolean;
   CardNumberError: boolean;
   MMError: boolean;
   YYError: boolean;
@@ -26,6 +27,7 @@ export default function FormSection(props: {
     MMError,
     YYError,
     CVCError,
+    CardHolderError,
   } = props;
   return (
     <div className=" mt-[3.02rem]  xl:mt-[17.19rem] xl:max-w-[23.8125rem]  ">
@@ -34,10 +36,11 @@ export default function FormSection(props: {
           labelValue="Cardholder Name"
           placeholderValue="e.g. Jane Appleseed"
           divStyle="mx-6"
-          InputStyle={false}
+          InputStyle={CardHolderError}
           inpValue={Cardholder}
           inpName="Cardholder"
           handleChange={handleChange}
+          displayError=""
         />
         <Inputs
           labelValue="Card Number"
@@ -47,6 +50,7 @@ export default function FormSection(props: {
           inpValue={CardNumber}
           inpName="CardNumber"
           handleChange={handleChange}
+          displayError=""
         />
         <BottomSection
           MMvalue={MM}
