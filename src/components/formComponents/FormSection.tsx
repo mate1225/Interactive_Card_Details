@@ -1,7 +1,7 @@
 import BottomSection from "./BottomSection";
 import CustomButton from "./CustomButton";
 import Inputs from "./Inputs";
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, MouseEventHandler } from "react";
 
 export default function FormSection(props: {
   Cardholder: string;
@@ -15,6 +15,7 @@ export default function FormSection(props: {
   MMError: boolean;
   YYError: boolean;
   CVCError: boolean;
+  handelClick: MouseEventHandler;
 }) {
   const {
     Cardholder,
@@ -28,6 +29,7 @@ export default function FormSection(props: {
     YYError,
     CVCError,
     CardHolderError,
+    handelClick,
   } = props;
   return (
     <div className=" mt-[3.02rem]  xl:mt-[17.19rem] xl:max-w-[23.8125rem]  ">
@@ -61,7 +63,7 @@ export default function FormSection(props: {
           YYError={YYError}
           CVCError={CVCError}
         />
-        <CustomButton text="Confirm" style="mt-7" />
+        <CustomButton text="Confirm" style="mt-7" handelClick={handelClick} />
       </section>
     </div>
   );

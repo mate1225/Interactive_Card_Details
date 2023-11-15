@@ -5,6 +5,7 @@ export interface stateInterface {
   YY: string;
   CVC: string;
   buttonSate: boolean;
+  ContinueState: boolean;
 }
 
 export interface ErrorStateInterface {
@@ -13,4 +14,20 @@ export interface ErrorStateInterface {
   MM: boolean;
   YY: boolean;
   CVC: boolean;
+}
+
+export interface errorMessageInterface {
+  Cardholder: string;
+  CardNumber: string;
+  MM: string;
+  YY: string;
+  CVC: string;
+}
+
+export interface errorSateType {
+  Cardholder: string;
+  CardNumber: string;
+  MM: string;
+  YY: string;
+  CVC: string;
 }

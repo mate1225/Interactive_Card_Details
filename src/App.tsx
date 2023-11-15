@@ -5,7 +5,12 @@ import BackgroundImage from "./components/BackgroundImage";
 import Card from "./components/card/Card";
 import FinishPage from "./components/formComponents/FinishPage";
 import FormSection from "./components/formComponents/FormSection";
-import { stateInterface, ErrorStateInterface } from "./util/interfaces";
+import {
+  stateInterface,
+  ErrorStateInterface,
+  /* errorMessageInterface, */
+  errorSateType,
+} from "./util/interfaces";
 
 function App() {
   const [state, setState] = useState<stateInterface>({
@@ -15,6 +20,7 @@ function App() {
     YY: "",
     CVC: "",
     buttonSate: false,
+    ContinueState: false,
   });
 
   const [errorState, setErrorState] = useState<ErrorStateInterface>({
@@ -25,9 +31,17 @@ function App() {
     CVC: false,
   });
 
+  /* const [errorMessage, setErrorMessage] = useState<errorMessageInterface>({
+    Cardholder: "",
+    CardNumber: "",
+    MM: "",
+    YY: "",
+    CVC: "",
+  }); */
+
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
-    console.log(state.buttonSate);
+
     setState((prev) => {
       return {
         ...prev,
@@ -59,7 +73,7 @@ function App() {
     });
   }
 
-  //form validation
+  //customStates
   function useErrorState(name: string, value: boolean) {
     setErrorState((prev) => {
       return {
@@ -68,60 +82,95 @@ function App() {
       };
     });
   }
-  /* function isContinLetters() {
-    //itt lesz egy ellenőrzés arra hogy tartalmaz-e betűket
+  /*  function useErrorMessage(name: string, value: string) {
+    setErrorMessage((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   } */
-  function formValidation() {
-    if (state.Cardholder === "") {
-      useErrorState("Cardholder", true);
-    }
-    if (state.CardNumber === "") {
-      useErrorState("CardNumber", true);
-    } else if (state.CardNumber.length !== 16) {
-      useErrorState("CardNumber", true);
-    }
-    //
-    if (state.MM === "") {
-      useErrorState("MM", true);
-    } else if (state.MM.length !== 2) {
-      useErrorState("MM", true);
-    }
-    //
-    if (state.YY === "") {
-      useErrorState("YY", true);
-    } else if (state.YY.length !== 2) {
-      useErrorState("YY", true);
-    }
-    //
-    if (state.CVC === "") {
-      useErrorState("CVC", true);
-    } else if (state.CVC.length !== 3) {
-      useErrorState("CVC", true);
-    }
-    /* if (
-      state.Cardholder === "" ||
-      state.CardNumber === "" ||
-      state.MM ||
-      state.YY === "" ||
-      state.CVC === ""
-    ) {
-      setErrorState({
-        Cardholder: true,
-        CardNumber: true,
-        MM: true,
-        YY: true,
-        CVC: true,
-      });
-    } */
-    //
+  /*  function useBtnReset() {
     setState((prev) => {
       return {
         ...prev,
-        buttonSate: true,
+        buttonSate: false,
       };
     });
+  } */
+  //form validation
+  function isContainsLetters(name: string, input: string) {
+    const hasNumber = /\d/.test(input);
+    if (hasNumber === false) {
+      useErrorState(name, true);
+    }
   }
-  console.log(errorState);
+  function validateInputField(name: keyof errorSateType, number: number) {
+    if (state[name] === "") {
+      useErrorState(name, true);
+    } else if (state[name].length !== number) {
+      useErrorState(name, true);
+    }
+  }
+  function formValidation() {
+    if (
+      state.buttonSate &&
+      errorState.Cardholder &&
+      errorState.CardNumber &&
+      errorState.MM &&
+      errorState.YY &&
+      errorState.CVC
+    ) {
+      setState((prev) => {
+        return {
+          ...prev,
+          ContinueState: true,
+        };
+      });
+    } else {
+      if (state.Cardholder === "") {
+        useErrorState("Cardholder", true);
+      }
+      validateInputField("CardNumber", 16);
+      isContainsLetters(state.CardNumber, state.CardNumber);
+      validateInputField("MM", 2);
+      validateInputField("YY", 2);
+      validateInputField("CVC", 3);
+
+      setState((prev) => {
+        return {
+          ...prev,
+          buttonSate: true,
+        };
+      });
+    }
+  }
+  if (state.ContinueState) {
+    setState({
+      Cardholder: "",
+      CardNumber: "",
+      MM: "",
+      YY: "",
+      CVC: "",
+      buttonSate: false,
+      ContinueState: false,
+    });
+    setErrorState({
+      Cardholder: false,
+      CardNumber: false,
+      MM: false,
+      YY: false,
+      CVC: false,
+    });
+    /*   setErrorMessage({
+      Cardholder: "",
+      CardNumber: "",
+      MM: "",
+      YY: "",
+      CVC: "",
+    }); */
+  }
+
   return (
     <>
       <div className=" xl:flex  ">
@@ -154,15 +203,10 @@ function App() {
               YYError={errorState.YY}
               CVCError={errorState.CVC}
               CardHolderError={errorState.Cardholder}
+              handelClick={formValidation}
             />
           )}
         </div>
-        <button
-          className=" h-[20rem] w-[20rem] rounded-md  bg-red-500 hover:bg-gray-600"
-          onClick={formValidation}
-        >
-          teszt button
-        </button>
       </div>
     </>
   );
