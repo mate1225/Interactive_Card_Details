@@ -1,6 +1,7 @@
 import complete from "../../images/icon-complete.svg";
-import CustomButton from "./CustomButton";
-export default function FinishPage() {
+import CustomButton from "../formComponents/CustomButton";
+import { MouseEventHandler } from "react";
+export default function FinishPage(props: { handelClick: MouseEventHandler }) {
   return (
     <div className=" mt-[3.02rem] xl:mt-[19.06rem]">
       <div className=" flex justify-center">
@@ -13,7 +14,11 @@ export default function FinishPage() {
       <p className=" mt-4 text-center text-[1.125rem] text-PurplishGrey">
         We’ve added your card details
       </p>
-      <CustomButton text="Continue" style="mt-[3rem]" />
+      <CustomButton
+        text="Continue"
+        style="mt-[3rem]"
+        handelClick={props.handelClick}
+      />
     </div>
   );
 }

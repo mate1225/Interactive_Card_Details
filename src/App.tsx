@@ -159,7 +159,32 @@ function App() {
       });
     }
   }
-  if (state.ContinueState) {
+  /* if (state.ContinueState) {
+    setState({
+      Cardholder: "",
+      CardNumber: "",
+      MM: "",
+      YY: "",
+      CVC: "",
+      buttonSate: false,
+      ContinueState: false,
+    });
+    setErrorState({
+      Cardholder: false,
+      CardNumber: false,
+      MM: false,
+      YY: false,
+      CVC: false,
+    });
+    setErrorMessage({
+      Cardholder: "",
+      CardNumber: "",
+      MM: "",
+      YY: "",
+      CVC: "",
+    });
+  } */
+  function resetPage() {
     setState({
       Cardholder: "",
       CardNumber: "",
@@ -203,7 +228,7 @@ function App() {
           errorState.MM === false &&
           errorState.YY === false &&
           state.buttonSate === true ? (
-            <FinishPage />
+            <FinishPage handelClick={resetPage} />
           ) : (
             <FormSection
               Cardholder={state.Cardholder}
