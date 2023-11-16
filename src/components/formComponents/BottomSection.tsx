@@ -9,6 +9,9 @@ export default function BottomSection(props: {
   MMError: boolean;
   YYError: boolean;
   CVCError: boolean;
+  MMErrorMessage: string;
+  YYErrorMessage: string;
+  CVCErrorMessage: string;
 }) {
   const {
     MMvalue,
@@ -18,6 +21,9 @@ export default function BottomSection(props: {
     MMError,
     YYError,
     CVCError,
+    MMErrorMessage,
+    YYErrorMessage,
+    CVCErrorMessage,
   } = props;
   return (
     <>
@@ -36,7 +42,7 @@ export default function BottomSection(props: {
               inpValue={MMvalue}
               inpName="MM"
               handleChange={handleChange}
-              displayError=""
+              displayError={MMErrorMessage}
             />
             <Inputs
               placeholderValue="YY"
@@ -46,7 +52,7 @@ export default function BottomSection(props: {
               inpValue={YYValue}
               inpName="YY"
               handleChange={handleChange}
-              displayError=""
+              displayError={YYErrorMessage}
             />
           </div>
         </div>
@@ -63,7 +69,7 @@ export default function BottomSection(props: {
             inpValue={CVCValue}
             inpName="CVC"
             handleChange={handleChange}
-            displayError=""
+            displayError={CVCErrorMessage}
           />
         </div>
       </section>

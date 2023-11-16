@@ -50,26 +50,14 @@ function App() {
       };
     });
 
-    //ezt még optimalizálni kell
-    /*  useEffect(() => {
-      setErrorState((prev) => {
-        return {
-          ...prev,
-          [name]: false,
-        };
-      });
-    }, [
-      errorState.CVC,
-      errorState.CardNumber,
-      errorState.Cardholder,
-      errorState.MM,
-      errorState.YY,
-    ]); */
     setErrorState((prev) => {
       return {
         ...prev,
         [name]: false,
       };
+    });
+    setErrorMessage((prev) => {
+      return { ...prev, [name]: "" };
     });
   }
 
@@ -90,26 +78,28 @@ function App() {
       };
     });
   }
-  function useBtnReset() {
-    setState((prev) => {
-      return {
-        ...prev,
-        buttonSate: false,
-      };
-    });
-  }
+
   //form validation
   function isContainsLetters(name: string, input: string) {
-    const hasNumber = /\d/.test(input);
-    if (hasNumber === false) {
+    const onlyNumbers = /^\d+$/.test(input);
+    if (onlyNumbers === false) {
       useErrorState(name, true);
+      useErrorMessage(name, "Wrong format, numbers only");
     }
   }
+
   function validateInputField(name: keyof errorSateType, number: number) {
     if (state[name] === "") {
       useErrorState(name, true);
     } else if (state[name].length !== number) {
       useErrorState(name, true);
+      if (name === "CardNumber") {
+        useErrorMessage(name, "Must be 16 characters long");
+      } else if (name === "MM" || name === "YY") {
+        useErrorMessage(name, "Must be 2 characters long");
+      } else if (name === "CVC") {
+        useErrorMessage(name, "Must be 3 characters long");
+      }
     }
   }
   function formValidation() {
@@ -130,12 +120,36 @@ function App() {
     } else {
       if (state.Cardholder === "") {
         useErrorState("Cardholder", true);
+        useErrorMessage("Cardholder", "Can’t be blank");
       }
+      //CardNumber
       validateInputField("CardNumber", 16);
-      isContainsLetters(state.CardNumber, state.CardNumber);
+      if (state.CardNumber !== "") {
+        isContainsLetters("CardNumber", state.CardNumber);
+      } else if (state.CardNumber === "") {
+        useErrorMessage("CardNumber", "Can’t be blank");
+      }
+      //MM
       validateInputField("MM", 2);
+      if (state.MM !== "") {
+        isContainsLetters("MM", state.MM);
+      } else if (state.MM === "") {
+        useErrorMessage("MM", "Can’t be blank");
+      }
+      //YY
       validateInputField("YY", 2);
+      if (state.YY !== "") {
+        isContainsLetters("YY", state.YY);
+      } else if (state.YY === "") {
+        useErrorMessage("YY", "Can’t be blank");
+      }
+      //CVC
       validateInputField("CVC", 3);
+      if (state.CVC !== "") {
+        isContainsLetters("CVC", state.CVC);
+      } else if (state.CVC === "") {
+        useErrorMessage("CVC", "Can’t be blank");
+      }
 
       setState((prev) => {
         return {
@@ -198,12 +212,17 @@ function App() {
               YY={state.YY}
               CVC={state.CVC}
               handleChange={handleInputChange}
+              CardHolderError={errorState.Cardholder}
               CardNumberError={errorState.CardNumber}
               MMError={errorState.MM}
               YYError={errorState.YY}
               CVCError={errorState.CVC}
-              CardHolderError={errorState.Cardholder}
               handelClick={formValidation}
+              CardHolderErrorMessage={errorMessage.Cardholder}
+              CardNumberErrorMessage={errorMessage.CardNumber}
+              MMErrorMessage={errorMessage.MM}
+              YYErrorMessage={errorMessage.YY}
+              CVCErrorMessage={errorMessage.CVC}
             />
           )}
         </div>

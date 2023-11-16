@@ -16,6 +16,11 @@ export default function FormSection(props: {
   YYError: boolean;
   CVCError: boolean;
   handelClick: MouseEventHandler;
+  CardHolderErrorMessage: string;
+  CardNumberErrorMessage: string;
+  MMErrorMessage: string;
+  YYErrorMessage: string;
+  CVCErrorMessage: string;
 }) {
   const {
     Cardholder,
@@ -30,6 +35,11 @@ export default function FormSection(props: {
     CVCError,
     CardHolderError,
     handelClick,
+    CardHolderErrorMessage,
+    CardNumberErrorMessage,
+    MMErrorMessage,
+    YYErrorMessage,
+    CVCErrorMessage,
   } = props;
   return (
     <div className=" mt-[3.02rem]  xl:mt-[17.19rem] xl:max-w-[23.8125rem]  ">
@@ -42,7 +52,7 @@ export default function FormSection(props: {
           inpValue={Cardholder}
           inpName="Cardholder"
           handleChange={handleChange}
-          displayError=""
+          displayError={CardHolderErrorMessage}
         />
         <Inputs
           labelValue="Card Number"
@@ -52,7 +62,7 @@ export default function FormSection(props: {
           inpValue={CardNumber}
           inpName="CardNumber"
           handleChange={handleChange}
-          displayError=""
+          displayError={CardNumberErrorMessage}
         />
         <BottomSection
           MMvalue={MM}
@@ -62,6 +72,9 @@ export default function FormSection(props: {
           MMError={MMError}
           YYError={YYError}
           CVCError={CVCError}
+          MMErrorMessage={MMErrorMessage}
+          YYErrorMessage={YYErrorMessage}
+          CVCErrorMessage={CVCErrorMessage}
         />
         <CustomButton text="Confirm" style="mt-7" handelClick={handelClick} />
       </section>
