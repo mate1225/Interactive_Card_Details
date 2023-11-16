@@ -8,7 +8,7 @@ import FormSection from "./components/formComponents/FormSection";
 import {
   stateInterface,
   ErrorStateInterface,
-  /* errorMessageInterface, */
+  errorMessageInterface,
   errorSateType,
 } from "./util/interfaces";
 
@@ -31,13 +31,13 @@ function App() {
     CVC: false,
   });
 
-  /* const [errorMessage, setErrorMessage] = useState<errorMessageInterface>({
+  const [errorMessage, setErrorMessage] = useState<errorMessageInterface>({
     Cardholder: "",
     CardNumber: "",
     MM: "",
     YY: "",
     CVC: "",
-  }); */
+  });
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
@@ -82,22 +82,22 @@ function App() {
       };
     });
   }
-  /*  function useErrorMessage(name: string, value: string) {
+  function useErrorMessage(name: string, value: string) {
     setErrorMessage((prev) => {
       return {
         ...prev,
         [name]: value,
       };
     });
-  } */
-  /*  function useBtnReset() {
+  }
+  function useBtnReset() {
     setState((prev) => {
       return {
         ...prev,
         buttonSate: false,
       };
     });
-  } */
+  }
   //form validation
   function isContainsLetters(name: string, input: string) {
     const hasNumber = /\d/.test(input);
@@ -162,13 +162,13 @@ function App() {
       YY: false,
       CVC: false,
     });
-    /*   setErrorMessage({
+    setErrorMessage({
       Cardholder: "",
       CardNumber: "",
       MM: "",
       YY: "",
       CVC: "",
-    }); */
+    });
   }
 
   return (

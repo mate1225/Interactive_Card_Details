@@ -16,13 +16,13 @@ export interface ErrorStateInterface {
   CVC: boolean;
 }
 
-/* export interface errorMessageInterface {
+export interface errorMessageInterface {
   Cardholder: string;
   CardNumber: string;
   MM: string;
   YY: string;
   CVC: string;
-} */
+}
 
 export interface errorSateType {
   Cardholder: string;
