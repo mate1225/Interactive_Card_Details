@@ -5,7 +5,6 @@ export interface stateInterface {
   YY: string;
   CVC: string;
   buttonSate: boolean;
-  ContinueState: boolean;
 }
 
 export interface ErrorStateInterface {

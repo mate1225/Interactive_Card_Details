@@ -20,7 +20,6 @@ function App() {
     YY: "",
     CVC: "",
     buttonSate: false,
-    ContinueState: false,
   });
 
   const [errorState, setErrorState] = useState<ErrorStateInterface>({
@@ -46,9 +45,16 @@ function App() {
       return {
         ...prev,
         [name]: value,
-        buttonSate: false,
       };
     });
+    if (state.buttonSate) {
+      setState((prev) => {
+        return {
+          ...prev,
+          buttonSate: false,
+        };
+      });
+    }
 
     setErrorState((prev) => {
       return {
@@ -159,31 +165,7 @@ function App() {
       });
     }
   }
-  /* if (state.ContinueState) {
-    setState({
-      Cardholder: "",
-      CardNumber: "",
-      MM: "",
-      YY: "",
-      CVC: "",
-      buttonSate: false,
-      ContinueState: false,
-    });
-    setErrorState({
-      Cardholder: false,
-      CardNumber: false,
-      MM: false,
-      YY: false,
-      CVC: false,
-    });
-    setErrorMessage({
-      Cardholder: "",
-      CardNumber: "",
-      MM: "",
-      YY: "",
-      CVC: "",
-    });
-  } */
+
   function resetPage() {
     setState({
       Cardholder: "",
@@ -192,7 +174,6 @@ function App() {
       YY: "",
       CVC: "",
       buttonSate: false,
-      ContinueState: false,
     });
     setErrorState({
       Cardholder: false,
