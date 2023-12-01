@@ -1,16 +1,14 @@
+import { useContext } from "react";
 import cardFront from "../../images/bg-card-front.png";
 import cardLogo from "../../images/card-logo.svg";
-export default function CardFront(props: {
-  Cardholder: string;
-  cardNumber: string;
-  MM: string;
-  YY: string;
-}) {
-  const { Cardholder, cardNumber, MM, YY } = props;
-  let cardNumberPart1 = cardNumber.slice(0, 4);
-  let cardNumberPart2 = cardNumber.slice(4, 8);
-  let cardNumberPart3 = cardNumber.slice(8, 12);
-  let cardNumberPart4 = cardNumber.slice(12, 16);
+import { CardContext } from "../../util/contexts";
+export default function CardFront() {
+  const { Cardholder, CardNumber, MM, YY } = useContext(CardContext);
+
+  let cardNumberPart1 = CardNumber.slice(0, 4);
+  let cardNumberPart2 = CardNumber.slice(4, 8);
+  let cardNumberPart3 = CardNumber.slice(8, 12);
+  let cardNumberPart4 = CardNumber.slice(12, 16);
 
   return (
     <section>
@@ -22,7 +20,7 @@ export default function CardFront(props: {
             className=" mt-[1.1rem] h-[1.875rem] xl:h-[2.9375rem] "
           />
           <p className=" mt-[2.31rem] text-[1.125rem] tracking-[0.1375rem] xl:mt-[4rem] xl:text-[1.75rem] xl:tracking-[0.21388rem]  ">
-            {cardNumber === ""
+            {CardNumber === ""
               ? "0000 0000 0000 0000"
               : cardNumberPart1 +
                 " " +

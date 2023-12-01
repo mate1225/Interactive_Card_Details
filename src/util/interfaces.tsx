@@ -30,3 +30,11 @@ export interface errorSateType {
   YY: string;
   CVC: string;
 }
+
+export interface CardContextProps {
+  Cardholder: string;
+  CardNumber: string;
+  MM: string;
+  YY: string;
+  CVC: string;
+}

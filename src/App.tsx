@@ -11,6 +11,7 @@ import {
   errorMessageInterface,
   errorSateType,
 } from "./util/interfaces";
+import { CardContext } from "./util/contexts";
 
 function App() {
   const [state, setState] = useState<stateInterface>({
@@ -195,13 +196,10 @@ function App() {
     <>
       <div className=" xl:flex  ">
         <BackgroundImage />
-        <Card
-          CVC={state.CVC}
-          Cardholder={state.Cardholder}
-          CardNumber={state.CardNumber}
-          MM={state.MM}
-          YY={state.YY}
-        />
+        <CardContext.Provider value={state}>
+          <Card />
+        </CardContext.Provider>
+
         <div className=" w-[100%] xl:flex   xl:justify-center ">
           {errorState.CVC === false &&
           errorState.CardNumber === false &&
