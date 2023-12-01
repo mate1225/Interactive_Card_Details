@@ -8,7 +8,7 @@ export default function BackgroundImage() {
       <img src={mobileBG} className=" h-[15rem] w-screen xl:hidden" />
       <img
         src={desktopBG}
-        className=" w-[ 30.1875rem] hidden h-screen xl:block"
+        className=" hidden min-h-screen w-[30.1875rem] xl:block"
       />
     </div>
   );
