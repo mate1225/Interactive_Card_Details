@@ -1,2 +1,1 @@
-- a CardNumber szekció változásakor elmozdul a dátum szekció . Annak mindig ugyan azon a helyen kéne lennie kép mérettől függően.
 - ellenérizni kell még egyszer hogy minden kinézet megegyezik a dizájnnal

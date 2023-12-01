@@ -199,7 +199,6 @@ function App() {
         <CardContext.Provider value={state}>
           <Card />
         </CardContext.Provider>
-
         <div className=" w-[100%] xl:flex   xl:justify-center ">
           {errorState.CVC === false &&
           errorState.CardNumber === false &&
