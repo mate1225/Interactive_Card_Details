@@ -1,1 +1,2 @@
 - ellenérizni kell még egyszer hogy minden kinézet megegyezik a dizájnnal
+  -átdolgozni a "FormSection" és az "app" komponenseket úgy hogy a hiba üzenet-et haszánáljanak csak a hibák kijelzésére (tehát ki kell törölni az error state-et a néklül hogy maga az oldal működése megváltozna)
